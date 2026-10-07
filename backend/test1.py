@@ -23,13 +23,13 @@ class Array:
         self.cap = self.cap*2
     def append(self, v):
         if self.n == self.cap:
-            grow(self)
+            self.grow(self)
         self.data[self.n] = v
         self.n = self.n + 1
     def insert(self, i, v):
         if self.n == self.cap:
-            grow(self)
-        for i range(self.n - i):
+            self.grow(self)
+        for i in range(self.n - i):
             offset = self.n - i
             self.data[offset] = self.data[offset - 1]
         
