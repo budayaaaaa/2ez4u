@@ -92,8 +92,10 @@ class LinkList:
     
     def insert(self, i, v):
         if i == 0:
-            self.head = self.prepend(v)
+            return self.prepend(v)
         before = self.head
+        if i == self.n:
+            return self.append(v)
         for k in range (i-1):
             before = before.next
             self.steps = self.steps + 1
@@ -106,14 +108,16 @@ class LinkList:
         if i == 0:
             self.head = self.head.next
             self.n = self.n - 1
-        before = self.head
-        for n in range (i-1):
-            before = before.next
-        trash = before.next
-        before.next = trash.next
-        if trash == self.tail:
-            tail = before
-            self.n = self.n - 1
+        else:
+            before = self.head
+            for n in range (i-1):
+                before = before.next
+                self.steps = self.steps + 1
+            trash = before.next
+            before.next = trash.next
+            if trash == self.tail:
+                self.tail = before
+                self.n = self.n - 1
 
 
 
