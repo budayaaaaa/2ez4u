@@ -21,6 +21,9 @@ class Stack:
     def kosong(self):
         return self.items.len() == 0
     
+    def get(self, i):
+        return self.items.get(i)
+    
 def adalah_angka(teks):
     return teks[0] >= "0" and teks[0] <= "9"
 
@@ -146,6 +149,14 @@ class Queue:
     def len(self):
         return self.items.len()
     
+    def enqueue_front(self, v):
+        return self.items.insert(0, v)
+    
+    def dequeue_back(self):
+        if self.items.len() == 0:
+            return None
+        return self.items.delete(self.items.len() - 1)
+    
 class CircularQueue:
     def __init__(self, kapasitas = 4):
         self.data = [None]*kapasitas
@@ -176,7 +187,7 @@ class CircularQueue:
         if self.count == self.capacity:
             self.grow()
         self.data[self.rear] = v
-        self.rear = self.rear + 1 % self.capacity
+        self.rear = (self.rear + 1) % self.capacity
         self.count = self.count + 1
     
     def dequeue(self):
