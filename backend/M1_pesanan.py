@@ -88,7 +88,7 @@ class LinkList:
         for k in range (i):
             nilai = nilai.next
             self.steps = self.steps + 1
-        return nilai.v
+        return nilai.value
     
     def insert(self, i, v):
         if i == 0:
@@ -106,18 +106,23 @@ class LinkList:
     
     def delete(self, i):
         if i == 0:
-            self.head = self.head.next
-            self.n = self.n - 1
+            v = self.head.value
+            if self.n == 1:
+                self.head = self.tail = None
+            else:
+                self.head = self.head.next
         else:
             before = self.head
             for n in range (i-1):
                 before = before.next
                 self.steps = self.steps + 1
             trash = before.next
+            v = trash.value
             before.next = trash.next
             if trash == self.tail:
                 self.tail = before
-                self.n = self.n - 1
+        self.n = self.n - 1
+        return v
 
 
 
